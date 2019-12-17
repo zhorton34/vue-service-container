@@ -1,5 +1,5 @@
 {
-  "name": "vue-service-container",
+  "name": "vuejs-service-container",
   "description": "Vue Service Container, vuejs container, bind and resolve, supports code splitting, register services, Pass back-end content directly end and access it within your service providers",
   "main": "dist/js/main.js",
   "keywords": [
@@ -47,5 +47,5 @@
     "webpack": "^4.28.4",
     "webpack-dev-server": "^3.1.14"
   },
-  "version": "1.0.5"
+  "version": "1.0.0"
 }
