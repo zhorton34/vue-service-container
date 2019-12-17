@@ -68,6 +68,7 @@ Vue.use(Container)
 ---
 ##### Step 4. Create Service Providers
 ---
+
 ```
 // container-service-providers.js
 
@@ -92,21 +93,22 @@ Container.provide({
   afterLaunch({ Vue, root, content, use, app }) {},
 })
 ```
+
 ---
 ###### Service Provider "Context" Object (Deconstructed)
 ---
-| Provider Hook | Vue (Global) | root (vue root options) | app (mounted vue instance) | content (injected Ex: json encoded Php) | use (append object to context) |
+
+| Provider Hook | Vue (Global) | root (vue root options) | app (mounted vue instance) | content (injected Ex: json encoded Php) | use (add properties to context) |
 |---------------|--------------|-------------------------|----------------------------|-----------------------------------------|---------------------------------|
-| register      | true         | true                    | true                       | true                                    | false                            |
-| boot          | true         | true                    | true                       | true                                    | false                            |
+| register      | true         | true                    | false                      | true                                    | true                            |
+| boot          | true         | true                    | false                      | true                                    | true                            |
 | afterLaunch   | true         | true                    | true                       | true                                    | true                            |
-
-
 
 
 ---
 #### Step 5: Launch Container's Vue Instance
 ---
+
 ```
 <!-- example.blade.php -->
 <script src='./main.js'></script>
@@ -123,6 +125,7 @@ Container.provide({
    window.Container.launch()
 </script>
 ```
+
 ---
 ###### What happens when we launch the container?
 ---
@@ -152,10 +155,13 @@ Container.provide({
 ---
 ##### Service Container
 ---
-**Overview**
-* The service container is a powerful tool for managing object dependencies
 
-**Example** Imagine duplicating this code several times
+**Overview**
+* The service container is a powerful tool for managing dependencies
+
+**Example** 
+* Imagine duplicating this code several times
+
 ```
 import axios from 'axios'
 import Person from 'people'
@@ -169,7 +175,9 @@ axios.get('/person/${idFromUrl}').then((response) => {
 })
 ```
 
-**Instead:** _bind_ the logic for retrieving a person to our container
+**Instead:** 
+* _bind_ the logic for retrieving a person to our container
+
 ```
 import axios from 'axios'
 import Person from 'people'
@@ -187,12 +195,16 @@ Container.provide({
 })
 ```
 
-**Then:** _resolve_ person whenever we need access to that logic 
+**Then:** 
+* _resolve_ person whenever we need access to that logic
+
 ```
 Container.resolve('person')
 ```
 
-**Additionally:** You can bind common imports you utilize (for example axios)
+**Additionally:** 
+* You can bind common imports you utilize (for example axios)
+
 ```
 import axios from 'axios' // you might use this import in hundreds of files
 
@@ -203,7 +215,9 @@ export default {
 }
 ```
 
-**Instead:** _bind_ axios to our service container 
+**Instead:** 
+* _bind_ axios to our service container 
+
 ```
 import axios from 'axios'
 
@@ -214,7 +228,9 @@ Container.provide({
 })
 ```
 
-**Then:** _resolve_ and use axios without needing to import it
+**Then:** 
+* _resolve_ and use axios without needing to import it
+
 ```
 export default {
   methos: {
@@ -226,8 +242,8 @@ export default {
 ---
 ##### Service Provider
 ---
+* _Use_ Your own custom context
 
-- _Use_ Your own custom context
 ```
 Container.provide({
   register({ use, name }) {
@@ -256,9 +272,11 @@ Container.provide({
 })
 ```
 
-- Determine _When_ to use service provider
+* Determine _When_ to use service provider
 
-**Example:** Only use service provider when on the `/dashboard` page otherwise bypass it 
+**Example:** 
+* Only use service provider when on the `/dashboard` page otherwise bypass it 
+
 ```
 
 Container.provide({
@@ -271,13 +289,12 @@ Container.provide({
    }
 ```
 
-
-
 ---
 #### Service Providers In Action Examples
 ---
-<br>
+
 **1. Register Vuex Store**
+
 ```
 import Vuex from 'vuex'
 import StoreObject from './store.js'
@@ -325,6 +342,7 @@ Container.provide({
 ```
 
 **3. Register Global Vue Filters**
+
 ```
 Container.provide({
   register(({ Vue }) {
@@ -332,7 +350,9 @@ Container.provide({
   }
 })
 ```
+
 **4. Register Global Vue Directives**
+
 ```
 Container.provide({
    register({ Vue }) {
@@ -342,7 +362,9 @@ Container.provide({
   }
 })
 ```
+
 **5. Register Global Vue Components**
+
 ```
 import ExampleGlobalComponent from '@Global/example-global-component'
  
@@ -354,6 +376,7 @@ Container.provide({
 ```
 
 **6. Add Vue Router**
+
 ```
 import routes from './routes'
 import VueRouter from 'vue-router'
@@ -366,6 +389,7 @@ Container.provide({
 ```
 
 **7. Redirect user to vue route after instance launches when they are authenticated**
+
 ```
 Container.provide({
    afterLaunch({ app }) {
@@ -378,7 +402,9 @@ Container.provide({
 })
 ```
 
-I'm guessing you're starting to get the idea ~ this is an extremely powerful tool. But, we haven't gotten to the most important part yet ~ **Code Splitting**
+_I'm guessing you're starting to get the idea ~ this is an extremely powerful tool. But, we haven't gotten to the most important part yet 
+
+**Code Splitting**
 
 
 ---
@@ -388,18 +414,21 @@ I'm guessing you're starting to get the idea ~ this is an extremely powerful too
 ###### **Definition from google**
 ___
 "**_Modern sites often combine all of their JavaScript into a single, large bundle. ... An alternative to large bundles is code-splitting, which is where JavaScript is split into smaller chunks. This enables sending the minimal code required to provide value upfront, improving page-load times. The rest can be loaded on demand._**"
-_
+
 
 
 ### Code splitting setup
 ---
+
 **Remember our example.blade.php file from earlier?**
 
 1. Change `container-service-providers.js` to `global-service-providers.js` 
+
 2. Add a dynamic, page or feature specific route ~ and add a script responsible for page   
    or feature specific service providers
 
 **Instead of this:**
+
 ```
 <!-- example.blade.php -->
 <script src='./main.js'></script>
@@ -419,6 +448,7 @@ _
 ```
 
 **We'll do this:**
+
 ```
 <!-- example.blade.php -->
 <script src='./main.js'></script>
@@ -443,7 +473,8 @@ _
 **Then, using webpack or webpack mix ~ split out your code**
 
 
-*Example (Laravel Mix)*
+**Example (Laravel Mix)**
+
 ```
 const mix = require('laravel-mix')
 
@@ -453,6 +484,7 @@ mix.js('src/main.js', 'public/js')
 ```
 
 **dashboard-service-providers.js (Split A)**
+
 ```
 import Toasted from 'vue-toasted'
 import Dashboard from '@Component/dashboard'
@@ -494,7 +526,7 @@ Container.provide({
 })  
 ```
 
-and keep on splitting and simplifying :)
+Keep on splitting and only use the services and code required ~ simplify! :)
 
 **Closing Notes**
 
@@ -510,6 +542,7 @@ ___
 All the best, Zachary Horton
 ___
 
-Clean Code Studio ~ Simplify!
 
-Clean Code Clean Life 
+**Clean Code Studio ~ Simplify!**
+
+_Clean Code Clean Life_
