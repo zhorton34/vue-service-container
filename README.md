@@ -10,7 +10,7 @@
 
 #### 1. Install
 ```
-  npm i vue-service-container
+  npm i vuejs-service-container
 ```
 
 #### 2. Import and Make Container
