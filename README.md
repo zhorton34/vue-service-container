@@ -98,13 +98,11 @@ Container.provide({
 ###### Service Provider "Context" Object (Deconstructed)
 ---
 
-| Provider Hook | Vue (Global) | root (vue root options) | app (mounted vue instance) | content (injected Ex: json encoded Php) | use (append object to context) |
+| Provider Hook | Vue (Global) | root (vue root options) | app (mounted vue instance) | content (injected Ex: json encoded Php) | use (add properties to context) |
 |---------------|--------------|-------------------------|----------------------------|-----------------------------------------|---------------------------------|
-| register      | true         | true                    | true                       | true                                    | false                            |
-| boot          | true         | true                    | true                       | true                                    | false                            |
+| register      | true         | true                    | false                      | true                                    | true                            |
+| boot          | true         | true                    | false                      | true                                    | true                            |
 | afterLaunch   | true         | true                    | true                       | true                                    | true                            |
-
-
 
 
 ---
