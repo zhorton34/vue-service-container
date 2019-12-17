@@ -1,0 +1,47 @@
+{
+  "name": "vue-service-container",
+  "description": "Vue JS Service Container, Container around Vue To Hook into and register services before and after vue instance launches",
+  "main": "dist/js/main.js",
+  "keywords": [
+    "js",
+    "vue",
+    "vuejs",
+    "vue service container",
+    "vue dependency injection",
+    "vue service provider",
+    "vuejs service container",
+    "vue as services",
+    "scale vue",
+    "vue js service container"
+  ],
+  "scripts": {
+    "dev": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "yarn production"
+  },
+  "repository": {
+    "url": "https://github.com/clean-code-studio/vue-services-container",
+    "type": "git"
+  },
+  "homepage": "https://github.com/clean-code-studio/vue-service-container",
+  "author": "Zak Horton <zhorton999@gmail.com> (https://zaktechtips.cleancode.studio)",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "cross-env": "^5.2.0",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "laravel-mix": "^4.0.14",
+    "node-sass": "^4.11.0",
+    "vue-template-compiler": "^2.5.22",
+    "webpack": "^4.28.4",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "version": "1.0.5"
+}
