@@ -1,17 +1,21 @@
 {
   "name": "vue-service-container",
-  "description": "Vue JS Service Container, Container around Vue To Hook into and register services before and after vue instance launches",
+  "description": "Vue Service Container, vuejs container, bind and resolve, supports code splitting, register services, Pass back-end content directly end and access it within your service providers",
   "main": "dist/js/main.js",
   "keywords": [
     "js",
     "vue",
     "vuejs",
+    "vue bind",
+    "vue resolve",
+    "vue resolution container",
     "vue service container",
     "vue dependency injection",
     "vue service provider",
     "vuejs service container",
     "vue as services",
     "scale vue",
+    "vue code splitting",
     "vue js service container"
   ],
   "scripts": {
@@ -23,10 +27,10 @@
     "prod": "yarn production"
   },
   "repository": {
-    "url": "https://github.com/clean-code-studio/vue-services-container",
+    "url": "https://github.com/zhorton34/vue-service-container",
     "type": "git"
   },
-  "homepage": "https://github.com/clean-code-studio/vue-service-container",
+  "homepage": "https://github.com/zhorton34/vue-service-container",
   "author": "Zak Horton <zhorton999@gmail.com> (https://zaktechtips.cleancode.studio)",
   "license": "MIT",
   "dependencies": {
