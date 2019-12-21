@@ -77,7 +77,7 @@ class VueServiceContainer {
                 const settingIsAString = typeof setting === 'string'
                 const settingIsAFunction = typeof setting === 'function'
 
-                if (settingIsAString || settingIsANumber) {
+                if (settingIsAString || settingIsNumber) {
                     this.options[key] = setting
                 }
                 if (settingIsArray) {
