@@ -33,24 +33,18 @@ class VueServiceContainer {
 
     /**
      * Implement Vue Service Container as a Plugin
-     * @param Vue
+     * @param GlobalVueApi
      * @param content
      */
-    install(Vue, options = {}) {
+    install(GlobalVueApi, options = {}) {
         const $container = this
-        $container.setVue(Vue)
+        $container.Vue = GlobalVueApi
+        $container.context.Vue = GlobalVueApi
 
-        Vue.prototype['$container'] = $container
-        Vue.prototype['$resolve'] = bindings => Object.keys($container.bindings)
+        GlobalVueApi.prototype['$container'] = $container
+        GlobalVueApi.prototype['$resolve'] = bindings => Object.keys($container.bindings)
             .filter(binding => bindings.includes(binding))
-            .forEach(bind => Vue.prototype[`$${bind}`] = $container.bindings[bind](({ ...$container.context, app: $container.app })))
-    }
-
-    /**
-     * Set Vue Global Api Instance
-     */
-    setVue(CustomGlobalVueApi) {
-        this.Vue = CustomGlobalVueApi
+            .forEach(bind => GlobalVueApi.prototype[`$${bind}`] = $container.bindings[bind](({ ...$container.context, app: $container.app })))
     }
 
     /**
@@ -171,7 +165,8 @@ class VueServiceContainer {
         Container.context = {
             Vue: Container.Vue,
             root: Container.root,
-            content: Container.content
+            content: Container.content,
+            container: Container,
         }
 
         /**

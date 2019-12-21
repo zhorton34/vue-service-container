@@ -501,7 +501,7 @@ Container.provide({
       })
    },
 
-   booting({ store, content }) {
+   boot({ store, content }) {
       store.commit('activity', content.user.activity)
    },
 
