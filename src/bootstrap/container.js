@@ -70,40 +70,10 @@ class VueServiceContainer {
             addVuex(store) {
                 this.options.store = store
             },
-            forceSet(key, setting = false) {
-                const settingIsArray = Array.isArray(setting)
-                const settingIsNumber = typeof setting === 'number'
-                const settingIsObject = typeof setting === 'object'
-                const settingIsAString = typeof setting === 'string'
-                const settingIsAFunction = typeof setting === 'function'
-
-                if (settingIsAString || settingIsNumber) {
-                    this.options[key] = setting
-                }
-                if (settingIsArray) {
-                    this.options[key] = [
-                        ...setting,
-                        ...this.options[key]
-                    ]
-                }
-                if (settingIsAFunction) {
-                    const old = this.options[key]();
-                    const append = setting();
-                    this.options[key] = () => {
-                        return { ...old, ...append }
-                    }
-                }
-                if (settingIsObject && !settingIsArray) {
-                    this.options[key] = {
-                        ...setting,
-                        ...this.options[key]
-                    }
-                }
-            },
-
             add(key, setting = false) {
                 if (key === 'store') {
                     this.options[key] = setting
+                    return 
                 }
                 const notAnOption = !Object.keys(this.options).includes(key)
 
