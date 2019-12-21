@@ -178,7 +178,7 @@ class VueServiceContainer {
          * Append content, in case we want to add
          * @param content
          */
-        Container.addBackEndContent(content = {}) {
+        Container.addBackEndContent = (content = {}) => {
             const currentContent = Container.context.content ? Container.context.content : {}
 
             Container.context.content = { ...currentContent, ...content }
