@@ -309,9 +309,10 @@ Container.provide({
       const store = new Vuex.Store(StoreObject)
 
       // add store to our root instance
-      root.set({ store })
+      // (force allows us to set root instance properties that are not within the default vue instance api docs)
+      root.forceSet({ store })
       
-      // add store to context so it's accessable to all proceeding provider hooks
+      // add store to context so it's accessable to all proceeding provider hooks 
       use({ store })
    },
 
