@@ -47,23 +47,6 @@ class VueServiceContainer {
     }
 
     /**
-     * Better wording for explaining this feature as a means for
-     * passing in Php or other "backend" content to our container
-     * @param content
-     */
-    backEndContent(content = {}) {
-        this.content = content
-    }
-
-    /**
-     * Append content, in case we want to add
-     * @param content
-     */
-    addBackEndContent(content = {}) {
-        this.content = { ...this.content, ...content }
-    }
-
-    /**
      * Set Vue Global Api Instance
      */
     setVue(CustomGlobalVueApi) {
@@ -190,7 +173,17 @@ class VueServiceContainer {
             root: Container.root,
             content: Container.content
         }
-        
+
+        /**
+         * Append content, in case we want to add
+         * @param content
+         */
+        Container.addBackEndContent(content = {}) {
+            const currentContent = Container.context.content ? Container.context.content : {}
+
+            Container.context.content = { ...currentContent, ...content }
+        }
+
         Container.addContext = append => Container.context = ({ ...Container.context, ...append })
         Container.context.use = Container.addContext
 
