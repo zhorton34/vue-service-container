@@ -71,7 +71,7 @@ class VueServiceContainer {
                 this.options.store = store
             },
             add(key, setting = false) {
-                if (key === 'store') {
+                if (key === 'store' || key === 'router') {
                     this.options[key] = setting
                     return 
                 }

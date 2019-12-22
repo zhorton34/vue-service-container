@@ -378,15 +378,18 @@ Container.provide({
 **6. Add Vue Router**
 
 ```
-import routes from './routes'
 import VueRouter from 'vue-router'
+import routes from './routes'
 
 Container.provide({
-  register({ Vue }) {
-     Vue.use(VueRouter, routes)
-  },
+   register({ root }) {
+      const router = new VueRouter({ routes })
+  
+      root.set({ router })
+   }
 })
 ```
+
 
 **7. Redirect user to vue route after instance launches when they are authenticated**
 
