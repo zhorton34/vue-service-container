@@ -6,6 +6,9 @@
 - Re-use services across not only code-splits, but also projects
 
 
+### Video Tutorial
+[![vuejs service container tutorial](https://img.youtube.com/vi/ODMTuekriwo/0.jpg)](https://www.youtube.com/watch?v=ODMTuekriwo)
+
 
 #### 1. Install
 ```
