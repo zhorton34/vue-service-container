@@ -497,6 +497,16 @@ mix.js('src/main.js', 'public/js')
     .js('src/about-service-providers.js', 'public/about-service-providers.js')
 ```
 
+**Notice**:
+You should add `.vue` inside `laravel-mix`: for example:
+```javascript
+mix.js('resources/js/main.js','public/js')
+    .vue()
+    .js('resources/js/service-providers.js','public/js')
+    ///
+
+```
+
 **dashboard-service-providers.js (Split A)**
 
 ```
